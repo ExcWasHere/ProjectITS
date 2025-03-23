@@ -14,7 +14,7 @@ const heroContent: SlideContent[] = [
     title: "Wakaf Pendidikan",
     subtitle: "Berikan masa depan cerah bagi generasi penerus bangsa dengan investasi abadi untuk ilmu yang bermanfaat",
     category: "Program Kebaikan",
-    image: "#",
+    image: "wakaf.jpg",
   },
   {
     id: 2,
@@ -35,21 +35,21 @@ const heroContent: SlideContent[] = [
     title: "Orang Tua Asuh",
     subtitle: "Ulurkan tangan kasih dan bagikan kebahagiaan, jadilah orang tua asuh bagi yatim dan dhuafa",
     category: "Program Kebaikan",
-    image: "index3.jpg",
+    image: "index1.jpg",
   },
   {
     id: 5,
     title: "Santunan Anak Yatim",
     subtitle: "Ringankan beban dengan santunan menjadi bukti cinta dan kepedulian untuk mereka",
     category: "Program Kebaikan",
-    image: "index3.jpg",
+    image: "wakaf.jpg",
   },
   {
     id: 6,
     title: "Bedah Rumah",
     subtitle: "Wujudkan impian rumah huni yang dipenuhi kehangatan dan kenyamanan bagi mereka yang membutuhkan",
     category: "Program Kebaikan",
-    image: "index3.jpg",
+    image: "wakaf.jpg",
   },
 ];
 
@@ -178,9 +178,14 @@ export default function Border1() {
             </div>
 
             <div className="mt-8">
-              <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                Donasi Sekarang
-              </button>
+              <a 
+                href="https://www.itsedekah.id/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                Kepoin Yuk!
+              </a>
             </div>
           </div>
         </div>
