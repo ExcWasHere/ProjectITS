@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import Footer from "~/common/Footer";
 import Header from "~/common/Header";
 import Border1 from "~/components/Home/border1";
 import IndexHero from "~/components/Home/border1";
@@ -19,6 +20,7 @@ export default function Index() {
       <Border1 />
       <Border2 />
       <Border3 />
+      <Footer />
    </>
   );
 }

@@ -14,42 +14,42 @@ const heroContent: SlideContent[] = [
     title: "Wakaf Pendidikan",
     subtitle: "Berikan masa depan cerah bagi generasi penerus bangsa dengan investasi abadi untuk ilmu yang bermanfaat",
     category: "Program Kebaikan",
-    image: "wakaf.jpg",
+    image: "/border/wakaf.jpg",
   },
   {
     id: 2,
     title: "Wakaf Air Bersih",
     subtitle: "Setetes air dari Anda, segarkan dahaga saudara kita. hadirkan harapan di daerah yang membutuhkan",
     category: "Program Kebaikan",
-    image: "index2.jpg",
+    image: "/border/index2.jpg",
   },
   {
     id: 3,
     title: "Infaq Rumah Tahfidz",
     subtitle: "Bersama bangun generasi qurani dan pilar kokoh bagi rumah tahfidz, tempat para penghafal Al-Qur'an menimba ilmu",
     category: "Program Kebaikan",
-    image: "index3.jpg",
+    image: "/border/index3.jpg",
   },
   {
     id: 4,
     title: "Orang Tua Asuh",
     subtitle: "Ulurkan tangan kasih dan bagikan kebahagiaan, jadilah orang tua asuh bagi yatim dan dhuafa",
     category: "Program Kebaikan",
-    image: "index1.jpg",
+    image: "/border/index1.jpg",
   },
   {
     id: 5,
     title: "Santunan Anak Yatim",
     subtitle: "Ringankan beban dengan santunan menjadi bukti cinta dan kepedulian untuk mereka",
     category: "Program Kebaikan",
-    image: "wakaf.jpg",
+    image: "#",
   },
   {
     id: 6,
     title: "Bedah Rumah",
     subtitle: "Wujudkan impian rumah huni yang dipenuhi kehangatan dan kenyamanan bagi mereka yang membutuhkan",
     category: "Program Kebaikan",
-    image: "wakaf.jpg",
+    image: "#",
   },
 ];
 
@@ -80,7 +80,7 @@ export default function Border1() {
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 8000);
+    const timer = setInterval(nextSlide, 7000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
