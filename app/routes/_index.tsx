@@ -1,7 +1,9 @@
 import type { MetaFunction } from "@remix-run/node";
 import Header from "~/common/Header";
-import Border1 from "~/components/border1";
-import IndexHero from "~/components/border1";
+import Border1 from "~/components/Home/border1";
+import IndexHero from "~/components/Home/border1";
+import Border2 from "~/components/Home/border2";
+import Border3 from "~/components/Home/border3";
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,6 +17,8 @@ export default function Index() {
    <>
       <Header />
       <Border1 />
+      <Border2 />
+      <Border3 />
    </>
   );
 }

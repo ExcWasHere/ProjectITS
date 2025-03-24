@@ -83,7 +83,7 @@ const Header: React.FC<HeaderProps> = () => {
       >
         <div className="flex items-center">
           <h1 className="text-xl md:text-2xl font-bold transition-transform duration-300 hover:scale-105">
-            Manurul<span className="text-green-500">Ilmi</span>
+            Manarul<span className="text-green-500">Ilmi</span>
           </h1>
         </div>
 
