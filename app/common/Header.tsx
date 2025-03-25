@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = () => {
         className={`w-full top-0 left-0 z-50 fixed h-16 md:h-20 flex justify-between items-center shadow-xl px-4 md:px-10 transition-all duration-500 ${
           isScrolled || isMobileMenuOpen 
             ? "text-gray-800 bg-white" 
-            : "text-white backdrop-blur-sm bg-white/20"
+            : "text-white bg-white/20"
         }`}
       >
         <div className="flex items-center">

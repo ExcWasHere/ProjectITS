@@ -2,7 +2,6 @@ import type { MetaFunction } from "@remix-run/node";
 import Footer from "~/common/Footer";
 import Header from "~/common/Header";
 import Border1 from "~/components/Home/border1";
-import IndexHero from "~/components/Home/border1";
 import Border2 from "~/components/Home/border2";
 import Border3 from "~/components/Home/border3";
 
