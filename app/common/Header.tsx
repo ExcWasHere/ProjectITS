@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = () => {
             }`}
             className={`relative overflow-hidden group py-2 px-3 rounded-lg transition-all duration-300 
               ${activeItem === item 
-                ? "text-white hover:text-green-400 font-bold" 
+                ? "hover:text-green-400 font-bold" 
                 : "hover:text-green-500"}`}
             onClick={() => {
               setActiveItem(item);
