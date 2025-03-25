@@ -1,10 +1,8 @@
 const Border2 = () => {
     return (
-      <div className="relative py-20 bg-gray-50 overflow-hidden">
+      <div className="relative py-20 bg-gradient-to-b from-green-50 to-white overflow-hidden">
         {/* Decorative Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-white opacity-60 animate-pulse" />
-        <div className="absolute top-0 left-0 w-72 h-72 bg-green-300 rounded-full -mt-32 -ml-32 opacity-30 blur-xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-400 rounded-full -mb-48 -mr-48 opacity-30 blur-xl" />
   
         {/* Floating Decorative Elements */}
         <div className="absolute top-10 left-1/4 w-24 h-24 bg-green-200 rounded-full opacity-50 animate-bounce-slow" />

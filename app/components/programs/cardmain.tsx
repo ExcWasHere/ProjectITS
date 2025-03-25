@@ -61,7 +61,7 @@ const SupportCenterCard: React.FC<SupportCenterCardProps> = ({
   href
 }) => {
   return (
-    <Card className="p-6 text-center flex flex-col items-center justify-between h-full">
+    <Card className="p-6 text-center flex flex-col items-center justify-between h-full bg-gradient-to-b from-green-50 to-white">
       <div className="flex flex-col items-center">
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
           {icon}
@@ -82,7 +82,7 @@ const SupportCenterCard: React.FC<SupportCenterCardProps> = ({
 // Page Component
 const ProgramCard: React.FC = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 bg-gradient-to-b from-amber-50 to-white">
       <h1 className="text-4xl font-bold text-center mb-12">Program Yayasan Manarul Ilmi ITS</h1>
       
       <div className="grid md:grid-cols-3 gap-6 mb-6">

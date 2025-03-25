@@ -1,6 +1,6 @@
 export default function Index1(): JSX.Element {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white text-black">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-amber-50 text-black">
       {/* Hero Section */}
       <div className="relative pt-16 pb-24 flex flex-col md:flex-row h-full max-w-7xl mx-auto justify-between px-6">
         <h1 className="text-black font-bold text-5xl md:text-7xl max-w-2xl mb-8 md:mb-0 leading-tight">

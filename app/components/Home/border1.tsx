@@ -58,7 +58,7 @@ interface IndicatorProps {
   onClick: () => void;
 }
 
-const Indicator: React.FC<IndicatorProps> = ({ isActive, onClick }) => (
+const Indicator = ({ isActive, onClick }: IndicatorProps): JSX.Element => (
   <button
     className={`w-3 h-3 rounded-full mx-1 transition-all duration-300 ${
       isActive ? "bg-green-500 scale-125" : "bg-gray-300"
@@ -142,9 +142,6 @@ export default function Border1() {
         )}
 
         {/* Decorative elements if no image is available */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-green-200 rounded-full -mr-32 -mt-32 opacity-20" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-green-200 rounded-full -ml-48 -mb-48 opacity-20" />
-
         <div className="absolute inset-0 bg-gradient-to-t from-green-400 via-transparent to-transparent opacity-10" />
 
         <div
