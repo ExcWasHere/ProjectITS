@@ -79,12 +79,9 @@ const SupportCenterCard: React.FC<SupportCenterCardProps> = ({
   );
 };
 
-// Page Component
 const ProgramCard: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-12 bg-gradient-to-b from-amber-50 to-white">
-      <h1 className="text-4xl font-bold text-center mb-12">Program Yayasan Manarul Ilmi ITS</h1>
-      
       <div className="grid md:grid-cols-3 gap-6 mb-6">
         <SupportCenterCard 
           icon={<KeagamaanIcon />}

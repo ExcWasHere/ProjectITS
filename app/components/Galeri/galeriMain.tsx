@@ -81,22 +81,8 @@ export default function GaleriCard(): JSX.Element {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-400 to-white py-16">
-      <div className="container mx-auto px-4 py-16 max-w-7xl text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-white text-center">
-            Galeri
-            <span className="text-green-600 bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
-              YMI
-            </span>
-          </h1>
-          <p className="mt-6 text-lg text-white leading-relaxed text-center">
-            Hasil dokumentasi kegiatan penyaluran program-program YMI.
-          </p>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-16 max-w-7xl">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-16">
+      <div className="container mx-auto px-4 pb-16 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {profileList.map((profile) => (
             <button
