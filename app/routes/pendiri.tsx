@@ -1,6 +1,4 @@
-import PendiriTeam from "~/components/Profile/pendiri";
-
-
+import PendiriTeam from "~/components/Profile/pendiriMain";
 export default function Pendiri() {
     return(
         <>

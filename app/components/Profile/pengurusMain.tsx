@@ -4,61 +4,55 @@ import { ArrowLeft } from 'lucide-react';
 const profileList = [
   {
     id: 1,
-    name: "Prof. Mahmud Zaki, MSc (alm)",
-    job: "Rektor ITS ke-4 (1973-1982)",
+    name: "Ir. Triyanto",
+    job: "Ketua Umum YMI",
     image: "#",
   },
   {
     id: 2,
-    name: "Ir. Harjono Sigit, B.S, IAI",
-    job: "Rektor ITS ke-5 (1982-1986)",
+    name: "Adi Dharma, ST, M.MT",
+    job: "Wakil Ketua 1 YMI",
     image: "#",
   },
   {
     id: 3,
-    name: "Prof. Ir. Soegono",
-    job: "Rektor ITS ke-7 (1995-2003)",
+    name: "Achmad Syaifoel Ghozi, S.Si",
+    job: "Wakil Ketua 2 YMI",
     image: "#",
   },
   {
     id: 4,
-    name: "Prof. Dr. Ir. Mohammad Nuh, DEA",
-    job: "Rektor ITS ke-8 (2003-2007)",
+    name: "Ir. Arief Wisnu Cahyono, ST",
+    job: "Sekretaris 1 YMI",
     image: "#",
   },
   {
     id: 5,
-    name: "Prof. Dr. Ir. Priyo Soeprobo M.S, PhD",
-    job: "Rektor ITS ke-9 (2007-2011)",
+    name: "Dr. Ir. Bambang Sampoerno, MT",
+    job: "Sekretaris 2 YMI",
     image: "#",
   },
   {
     id: 6,
-    name: "Prof. Dr. Ir. Tri Yogi Yuwono, DEA",
-    job: "Rektor ITS ke-10 (2011-2015)",
+    name: "Arief Abdurrakhman, ST, MT",
+    job: "Bendahara YMI",
     image: "#",
   },
   {
     id: 7,
-    name: "Prof. Ir. Joni Hermana, M.Sc.ES, PhD",
-    job: "Rektor ITS ke-11 (2015-2019)",
+    name: "Dr. Orchidea Rachmaniah, ST, MT",
+    job: "Bidang Kemahasiswaan YMI",
     image: "#",
   },
   {
     id: 8,
-    name: "Prof. Dr. Soegimin Wahyu Winata",
-    job: "Tokoh Senior ITS",
-    image: "#",
-  },
-  {
-    id: 9,
-    name: "Ir. Hanafi Pratomo (alm)",
-    job: "Tokoh Senior ITS",
+    name: "Prof. Dr. Agung Purniawan, S.T., M.Eng",
+    job: "Bidang Hubungan Luar Negeri YMI",
     image: "#",
   },
 ];
 
-export default function PendiriTeam(): JSX.Element {
+export default function PengurusTeam(): JSX.Element {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -90,13 +84,13 @@ export default function PendiriTeam(): JSX.Element {
         <div className="flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="text-center md:text-left max-w-2xl">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
-              Pendiri &<br />
+              Pengurus<br />
               <span className="text-green-600 bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
-                Pembina
+                Yayasan
               </span>
             </h1>
             <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              Yayasan Manarul Ilmi Institut Teknologi Sepuluh Nopember
+              Pengurus Yayasan Manarul Ilmi Institut Teknologi Sepuluh Nopember Periode 2025 - 2030.
             </p>
           </div>
           <div className="relative group">
@@ -140,7 +134,7 @@ export default function PendiriTeam(): JSX.Element {
       </div>
 
       <div className="container mx-auto px-4">
-        <div className="h-px bg-gradient-to-r from-transparent via-green-200 to-transparent"></div>
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400 to-transparent"></div>
       </div>
     </div>
   );
