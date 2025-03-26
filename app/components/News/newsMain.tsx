@@ -15,42 +15,42 @@ const newsData: NewsItem[] = [
     title: "Kegiatan Sosial Bantu Korban Bencana",
     description: "Yayasan kami melakukan aksi tanggap darurat untuk membantu korban bencana alam di daerah terpencil.",
     imageUrl: "#",
-    link: "/news"
+    link: "/korban-bencana"
   },
   {
     id: 2,
     title: "Program Beasiswa Pendidikan",
     description: "Membuka kesempatan bagi pelajar berprestasi dari keluarga kurang mampu untuk melanjutkan pendidikan.",
     imageUrl: "#",
-    link: "/news"
+    link: "/beasiswa-pendidikan"
   },
   {
     id: 3,
     title: "Launching Program Kesehatan Masyarakat",
     description: "Memperkenalkan program pemeriksaan kesehatan gratis bagi warga di wilayah terpencil.",
     imageUrl: "#",
-    link: "/news"
+    link: "/kesehatan-masyarakat"
   },
   {
     id: 4,
     title: "Rehabilitasi Hutan Mangrove",
     description: "Upaya pelestarian ekosistem mangrove dan pemberdayaan masyarakat pesisir.",
     imageUrl: "#",
-    link: "/news"
+    link: "#"
   },
   {
     id: 5,
     title: "Pemberdayaan UMKM Lokal",
     description: "Program pendampingan dan pelatihan untuk pengusaha kecil di daerah tertinggal.",
     imageUrl: "#",
-    link: "/news"
+    link: "#"
   },
   {
     id: 6,
     title: "Edukasi Lingkungan Hidup",
     description: "Sosialisasi pentingnya pelestarian lingkungan dan praktik ramah lingkungan.",
     imageUrl: "#",
-    link: "/news"
+    link: "#"
   }
 ];
 
