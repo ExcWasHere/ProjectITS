@@ -34,9 +34,9 @@ const userEaseReviews: UserReview[] = [
 ];
 
 const reviewImages = [
-  "/index/review.jpg",
-  "/index/review1.jpg",
-  "/index/review2.jpg"
+  "#",
+  "#",
+  "#"
 ];
 
 interface NavigationButtonProps {
