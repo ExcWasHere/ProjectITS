@@ -11,30 +11,24 @@ interface BentukKegiatan {
 const featureList: BentukKegiatan[] = [
   {
     id: 1,
-    title: "Beasiswa Pendidikan Dhuafa",
+    title: "Wakaf Produktif",
     subtitle:
-      "Beasiswa ini diberikan kepada mahasiswa ITS yang memiliki keterbatasan ekonomi sehingga tidak bisa membayar UKT, biasanya kebutuhannya sangat mendesak.",
+      "Wakaf produktif adalah skema pengelolaan donasi wakaf dari umat, yaitu dengan memproduktifkan dana tersebut sehingga mampu memberikan bagi hasil yang berkelanjutan, dimana bagi hasil tersebut dipergunakan untuk bantuan biaya pendidikan mahasiswa ITS.",
   },
   {
     id: 2,
-    title: "Beasiswa Pendidikan Guru Tahfidz",
+    title: "Wakaf Air Bersih",
     subtitle:
-      "Beasiswa ini diberikan kepada ustadzah pendamping rumah tahfidz putri untuk menempuh pendidikan di perguruan tinggi.",
+      "Solusi dalam penyelesaian krisis air bersih di Indonesia bisa dengan dilakukan pembangunan sumur bor maupun pipanisasi. Kalimantan Timur (1) Sulawesi Utara (1) NTT (3) NTB (1) Jawa Timur (13) DIY (2) Jateng (1)",
   },
   {
     id: 3,
-    title: "Beasiswa Pendidikan OTA Yatim",
+    title: "Wakaf Desain",
     subtitle:
-      "Beasiswa pendidikan ini diberikan kepada anak tendik/dosen ITS yang yatim, mahasiswa ITS yatim serta anak-anak yatim dhuafa di sekitar ITS.",
+      "Wakaf desain merupakan kerjasama YMI ITS dengan Alumni Arsitektur ITS dalam bentuk wakaf desain untuk bangunan sosial dan keagamaan, diantaranya desain Masjid, Pondok Pesantren Rumah Tahfidz, Rumah Sakit, dll.",
   },
   {
     id: 4,
-    title: "Beasiswa Wakaf Pendidikan",
-    subtitle:
-      "Beasiswa wakaf pendidikan merupakan bentuk penyaluran atas bagi hasil dana pengelolaan wakaf produktif yang diberikan kepada mahasiswa ITS yang kurang mampu untuk menunjang kebutuhan kuliah.",
-  },
-  {
-    id: 5,
     title: "Ingin menyalurkan donasi lewat program kami?",
     subtitle: "Donasi Sekarang!",
     buttonLink: "https://www.itsedekah.id/",
@@ -143,7 +137,7 @@ const PhotoCard = ({ src, title }: { src: string; title: string }) => {
   );
 };
 
-export default function IndexPendidikan(): JSX.Element {
+export default function IndexWakaf(): JSX.Element {
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const descriptionRef = useRef(null);
 
@@ -179,11 +173,11 @@ export default function IndexPendidikan(): JSX.Element {
               font-light italic transition-all duration-1000 ease-out
               ${isDescriptionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            Membantu biaya pendidikan bagi keluarga yang kurang mampu maupun keluarga terdampak bencana.
+            Membantu mengabadikan amal umat dengan memberikan harapan kepada yang membutuhkan.
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight max-w-xl tracking-tight">
             Program <br />
-            <span className="text-green-600">Pendidikan</span>
+            <span className="text-green-600">Wakaf</span>
           </h1>
         </div>
 
@@ -200,15 +194,15 @@ export default function IndexPendidikan(): JSX.Element {
           <div className="grid md:grid-cols-3 gap-8">
             <PhotoCard 
               src="#" 
-              title="Beasiswa Pendidikan Dhuafa" 
+              title="Wakaf Air Bersih" 
             />
             <PhotoCard 
               src="#" 
-              title="Beasiswa Pendidikan Guru Tahfidz" 
+              title="Wakaf Desain" 
             />
             <PhotoCard 
               src="#" 
-              title="Beasiswa Pendidikan OTA Yatim" 
+              title="Wakaf Produktif" 
             />
           </div>
         </div>

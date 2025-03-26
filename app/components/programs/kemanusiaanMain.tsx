@@ -11,30 +11,18 @@ interface BentukKegiatan {
 const featureList: BentukKegiatan[] = [
   {
     id: 1,
-    title: "Beasiswa Pendidikan Dhuafa",
+    title: "Tanggap Darurat & Recovery Pasca Bencana",
     subtitle:
-      "Beasiswa ini diberikan kepada mahasiswa ITS yang memiliki keterbatasan ekonomi sehingga tidak bisa membayar UKT, biasanya kebutuhannya sangat mendesak.",
+      "YMI ITS dan Tim Tanggap Bencana ITS merespon bencana alam di Indonesia dengan mengirimkan relawan ke 15 daerah bencana, diantaranya: Luwu Utara, Sukabumi, Kalimantan Selatan, Sulawesi Selatan, Sulawesi Barat, Nganjuk, Jombang, Lumajang, Batu Malang, Malang, Lumajang, Pasaman, Blitar, Trenggalek, dan Cianjur.",
   },
   {
     id: 2,
-    title: "Beasiswa Pendidikan Guru Tahfidz",
+    title: "Peduli Kemanusiaan",
     subtitle:
-      "Beasiswa ini diberikan kepada ustadzah pendamping rumah tahfidz putri untuk menempuh pendidikan di perguruan tinggi.",
+      "Pengiriman bantuan kemanusiaan ke daerah konflik di Palestina sebagai bentuk dukungan kemanusiaan kepada saudara sesama muslim yang mengalami penjajahan/genosida hingga menewaskan puluhan ribu orang.",
   },
   {
     id: 3,
-    title: "Beasiswa Pendidikan OTA Yatim",
-    subtitle:
-      "Beasiswa pendidikan ini diberikan kepada anak tendik/dosen ITS yang yatim, mahasiswa ITS yatim serta anak-anak yatim dhuafa di sekitar ITS.",
-  },
-  {
-    id: 4,
-    title: "Beasiswa Wakaf Pendidikan",
-    subtitle:
-      "Beasiswa wakaf pendidikan merupakan bentuk penyaluran atas bagi hasil dana pengelolaan wakaf produktif yang diberikan kepada mahasiswa ITS yang kurang mampu untuk menunjang kebutuhan kuliah.",
-  },
-  {
-    id: 5,
     title: "Ingin menyalurkan donasi lewat program kami?",
     subtitle: "Donasi Sekarang!",
     buttonLink: "https://www.itsedekah.id/",
@@ -143,7 +131,7 @@ const PhotoCard = ({ src, title }: { src: string; title: string }) => {
   );
 };
 
-export default function IndexPendidikan(): JSX.Element {
+export default function IndexKemanusiaan(): JSX.Element {
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const descriptionRef = useRef(null);
 
@@ -179,11 +167,11 @@ export default function IndexPendidikan(): JSX.Element {
               font-light italic transition-all duration-1000 ease-out
               ${isDescriptionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            Membantu biaya pendidikan bagi keluarga yang kurang mampu maupun keluarga terdampak bencana.
+            Membantu korban bencana agar segera pulih dan dapat menjalankan aktivitas secara normal kembali.
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight max-w-xl tracking-tight">
             Program <br />
-            <span className="text-green-600">Pendidikan</span>
+            <span className="text-green-600">Kemanusiaan</span>
           </h1>
         </div>
 
@@ -200,15 +188,15 @@ export default function IndexPendidikan(): JSX.Element {
           <div className="grid md:grid-cols-3 gap-8">
             <PhotoCard 
               src="#" 
-              title="Beasiswa Pendidikan Dhuafa" 
+              title="Tanggap Bencana" 
             />
             <PhotoCard 
               src="#" 
-              title="Beasiswa Pendidikan Guru Tahfidz" 
+              title="Peduli Kemanusiaan Palestina" 
             />
             <PhotoCard 
               src="#" 
-              title="Beasiswa Pendidikan OTA Yatim" 
+              title="Recovery Pasca Bencana di Malang" 
             />
           </div>
         </div>
