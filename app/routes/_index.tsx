@@ -4,6 +4,7 @@ import Header from "~/common/Header";
 import Border1 from "~/components/Home/border1";
 import Border2 from "~/components/Home/border2";
 import Border3 from "~/components/Home/border3";
+import HotNewsSection from "~/components/Home/border4";
 
 export const meta: MetaFunction = () => {
   return [
@@ -19,6 +20,7 @@ export default function Index() {
       <Border1 />
       <Border2 />
       <Border3 />
+      <HotNewsSection />
       <Footer />
    </>
   );

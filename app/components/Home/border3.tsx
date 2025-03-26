@@ -1,66 +1,117 @@
-import { BiChevronRight } from "react-icons/bi";
-import { FaEarthAsia } from "react-icons/fa6";
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView, useAnimation } from 'framer-motion';
 
 export default function Border3(): JSX.Element {
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+  const numberRef = useRef(null);
+  const isInView = useInView(numberRef, { once: true });
+  const mainControls = useAnimation();
+  const numberControls = useAnimation();
+
+  const fullNumber = '87.480';
+  
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start("visible");
+      
+      // Animasi angka per digit
+      const animateDigits = async () => {
+        for (let i = 0; i <= fullNumber.length; i++) {
+          await numberControls.start({
+            clipPath: `inset(0 ${100 - (i / fullNumber.length) * 100}% 0 0)`,
+            transition: { 
+              duration: 0.5,
+              ease: "easeInOut"
+            }
+          });
+        }
+      };
+
+      animateDigits();
+    }
+  }, [isInView, mainControls, numberControls]);
+
   return (
-    <div className="max-h-fit mx-auto bg-white">
-      <article className="flex flex-col md:flex-row mx-auto p-4 gap-2 h-full max-w-[95vw]">
-        <div className="flex flex-col gap-2 w-full md:w-1/2">
-          <div className="relative aspect-square overflow-hidden flex-1">
-            <img
-              src="#"
-              alt="Top left discover image"
-              className="absolute w-full h-full object-cover rounded-md"
+    <div className="max-h-fit mx-auto bg-gradient-to-b from-white to-green-50 p-4">
+      <motion.div 
+        ref={numberRef}
+        variants={{
+          hidden: { opacity: 0, y: 75 },
+          visible: { opacity: 1, y: 0 }
+        }}
+        initial="hidden"
+        animate={mainControls}
+        transition={{ duration: 0.5, delay: 0.25 }}
+        className="grid grid-rows-2 gap-4 h-[500px]"
+      >
+        {/* First row with full-width content */}
+        <motion.div 
+          className="bg-green-white flex items-center justify-center rounded-xl shadow-lg"
+        >
+          <div className="text-center overflow-hidden">
+            <motion.h2 
+              initial={{ clipPath: 'inset(0 100% 0 0)' }}
+              animate={numberControls}
+              className="text-6xl font-bold mb-4 text-green-800"
+            >
+              {fullNumber}
+            </motion.h2>
+            <motion.p 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              initial="hidden"
+              animate={mainControls}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="text-2xl text-green-900"
+            >
+              PENERIMA MANFAAT
+            </motion.p>
+          </div>
+        </motion.div>
+        
+        {/* Second row split into two columns */}
+        <div className="grid grid-cols-2 gap-4">
+          <motion.div 
+            onHoverStart={() => setHoveredSection('kegiatan')}
+            onHoverEnd={() => setHoveredSection(null)}
+            whileHover={{ scale: 1.05 }}
+            className="relative overflow-hidden rounded-xl shadow-lg"
+          >
+            <img 
+              src="#" 
+              alt="Foto Kegiatan" 
+              className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black rounded-md opacity-50 backdrop-blur-lg"></div>
-            <div className="ml-3 h-full relative z-10 flex flex-col items-start justify-around gap-2 p-4 text-white">
-              <FaEarthAsia size={30} />
-              <div>
-                <h2 className="text-2xl md:text-3xl">
-                  Penerima Manfaat
-                </h2>
-                <h4 className="text-lg md:text-xl font-light">
-                  87.480
-                </h4>
-              </div>
-              <a href="https://www.itsedekah.id" className="inline-block">
-                <button className="flex items-center px-3 py-1.5 md:px-4 md:py-2 text-black bg-white rounded-md shadow-md text-sm md:text-base">
-                  Donasi Sekarang <BiChevronRight size={20} />
-                </button>
-              </a>
+            <div className={`absolute inset-0 bg-black transition-opacity duration-300 
+              ${hoveredSection === 'kegiatan' ? 'opacity-40' : 'opacity-20'}`}
+            ></div>
+            <div className="relative z-10 p-4 text-white">
+              <span className="text-2xl font-semibold"></span>
             </div>
-          </div>
-          <div className="relative aspect-square overflow-hidden flex-1">
-            <img
-              src="#"
-              alt="Bottom left discover image"
-              className="absolute inset-0 w-full h-full object-cover rounded-md"
+          </motion.div>
+          
+          <motion.div 
+            onHoverStart={() => setHoveredSection('laporan')}
+            onHoverEnd={() => setHoveredSection(null)}
+            whileHover={{ scale: 1.05 }}
+            className="relative overflow-hidden rounded-xl shadow-lg"
+          >
+            <img 
+              src="#" 
+              alt="Foto Grafik Laporan" 
+              className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black opacity-70 rounded-md"></div>
-            <div className="ml-3 md:ml-6 text-white flex items-end h-full">
-              <div className="relative z-10">
-                <h3 className="mb-1 text-2xl md:text-3xl font-semibold">Foto </h3>
-                <h1 className="mb-4 md:mb-8 text-4xl md:text-6xl font-bold">Kegiatan</h1>
-              </div>
+            <div className={`absolute inset-0 bg-black transition-opacity duration-300 
+              ${hoveredSection === 'laporan' ? 'opacity-40' : 'opacity-20'}`}
+            ></div>
+            <div className="relative z-10 p-4 text-white">
+              <span className="text-2xl font-semibold"></span>
             </div>
-          </div>
+          </motion.div>
         </div>
-        <div className="relative aspect-square overflow-hidden w-full md:w-1/2 mt-2 md:mt-0">
-          <img
-            src="#"
-            alt="Right discover image"
-            className="absolute inset-0 w-full h-full object-cover rounded-md"
-          />
-          <div className="absolute inset-0 bg-black opacity-60 rounded-md"></div>
-          <div className="h-full w-full flex items-center justify-center text-center text-white relative z-10">
-            <h1 className="font-semibold text-2xl md:text-4xl">
-              Foto
-              <br />
-              Grafik Laporan
-            </h1>
-          </div>
-        </div>
-      </article>
+      </motion.div>
     </div>
   );
 }
