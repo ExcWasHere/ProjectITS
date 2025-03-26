@@ -36,7 +36,7 @@ export default function Index2(): JSX.Element {
       {/* Hero Section */}
     <div className="relative pt-16 pb-24 flex flex-col md:flex-row h-full max-w-7xl mx-auto justify-between px-6">
       <h1 className="text-black font-bold text-5xl md:text-7xl max-w-2xl mb-8 md:mb-0 leading-tight text-right ml-auto">
-        Struktur
+        Struktur <br />
         <span className="text-green-600 relative">
         Organisasi
         </span>
