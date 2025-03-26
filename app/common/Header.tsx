@@ -11,27 +11,23 @@ const Header: React.FC<HeaderProps> = () => {
   const currentPage = useLocation();
 
   useEffect(() => {
-    if (
-      currentPage.pathname === "/categories" ||
-      currentPage.pathname === "/dashboard" 
-    ) {
-      setIsScrolled(true);
-    } else {
-      const handleScroll = () => {
-        const scrollPosition = window.scrollY;
-        if (currentPage.pathname === "/about-us" || currentPage.pathname === "/support" ) {
-          setIsScrolled(scrollPosition >= window.innerHeight * 0.4);
-        } else {
-          setIsScrolled(scrollPosition >= window.innerHeight * 0.85);
-        }
-      };
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }
+    setIsScrolled(false);
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 50) {
+        setIsScrolled(true);
+        return;
+      }
+      if (scrollPosition === 0) {
+        setIsScrolled(false);
+      }
+      const timeoutId = setTimeout(() => {
+        setIsScrolled(true);
+      }, 60000);
+      return () => clearTimeout(timeoutId);
+    };
+    window.addEventListener("scroll", handleScroll);
 
-    // Set active item based on current path
     const path = currentPage.pathname;
     if (path === "/") {
       setActiveItem("Home");
@@ -41,6 +37,10 @@ const Header: React.FC<HeaderProps> = () => {
       );
       if (matchedItem) setActiveItem(matchedItem);
     }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [currentPage.pathname]);
 
   const navItems = ["Home", "Profile", "Programs", "Galeri", "News"];
@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = () => {
             }`}
             className={`relative overflow-hidden group py-2 px-3 rounded-lg transition-all duration-300 
               ${activeItem === item 
-                ? "hover:text-green-400 font-bold" 
+                ? "text-green-500 font-bold" 
                 : "hover:text-green-500"}`}
             onClick={() => {
               setActiveItem(item);
@@ -75,9 +75,9 @@ const Header: React.FC<HeaderProps> = () => {
   return (
     <>
       <div
-        className={`w-full top-0 left-0 z-50 fixed h-16 md:h-20 flex justify-between items-center shadow-xl px-4 md:px-10 transition-all duration-500 ${
-          isScrolled || isMobileMenuOpen 
-            ? "text-gray-800 bg-white" 
+        className={`w-full top-0 left-0 z-50 fixed h-16 md:h-20 flex justify-between items-center shadow-xl px-4 md:px-10 transition-all duration-500 
+          ${isScrolled || isMobileMenuOpen 
+            ? "text-gray-800 bg-white shadow-md" 
             : "text-white bg-white/20"
         }`}
       >
@@ -109,11 +109,14 @@ const Header: React.FC<HeaderProps> = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div
+      <button
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
           isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsMobileMenuOpen(false)}
+        onKeyDown={(e) => e.key === 'Escape' && setIsMobileMenuOpen(false)}
+        aria-label="Close menu overlay"
+        tabIndex={isMobileMenuOpen ? 0 : -1}
       />
 
       {/* Mobile Menu */}
@@ -124,7 +127,7 @@ const Header: React.FC<HeaderProps> = () => {
       >
         <div className="p-4 border-b border-gray-100 flex justify-between items-center">
           <h1 className="text-xl font-bold">
-            Manurul<span className="text-green-500">Ilmi</span>
+            Manarul<span className="text-green-500">Ilmi</span>
           </h1>
           <button onClick={() => setIsMobileMenuOpen(false)}>
             <X className="text-green-500" />

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 interface SlideContent {
   id: number;
@@ -72,17 +72,24 @@ export default function Border1() {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const nextSlide = useCallback(() => {
+    if (isAnimating) return;
     setIsAnimating(true);
     setTimeout(() => {
       setCurrentPostIndex((prevIndex) => (prevIndex + 1) % heroContent.length);
       setIsAnimating(false);
     }, 500);
-  }, []);
+  }, [isAnimating]);
 
-  useEffect(() => {
-    const timer = setInterval(nextSlide, 7000);
-    return () => clearInterval(timer);
-  }, [nextSlide]);
+  const prevSlide = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentPostIndex((prevIndex) => 
+        (prevIndex - 1 + heroContent.length) % heroContent.length
+      );
+      setIsAnimating(false);
+    }, 500);
+  }, [isAnimating]);
 
   const handleIndicatorClick = (index: number) => {
     if (index === currentPostIndex || isAnimating) return;
@@ -105,7 +112,7 @@ export default function Border1() {
           {/* Pattern overlay */}
           <div className="absolute inset-0 opacity-10" 
                style={{ 
-                 backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+                 backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E')",
                  backgroundSize: "60px 60px" 
                }}
           />
@@ -164,14 +171,31 @@ export default function Border1() {
               {heroContent[currentPostIndex].subtitle}
             </h2>
 
-            <div className="flex justify-center gap-2 mt-6">
-              {heroContent.map((_, index) => (
-                <Indicator
-                  key={index}
-                  isActive={index === currentPostIndex}
-                  onClick={() => handleIndicatorClick(index)}
-                />
-              ))}
+            {/* Navigation Buttons */}
+            <div className="flex justify-center items-center gap-4 mt-6">
+              <button 
+                onClick={prevSlide} 
+                className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition-all"
+              >
+                &#10094; {/* Left arrow */}
+              </button>
+
+              <div className="flex gap-2">
+                {heroContent.map((_, index) => (
+                  <Indicator
+                    key={index}
+                    isActive={index === currentPostIndex}
+                    onClick={() => handleIndicatorClick(index)}
+                  />
+                ))}
+              </div>
+
+              <button 
+                onClick={nextSlide} 
+                className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition-all"
+              >
+                &#10095; {/* Right arrow */}
+              </button>
             </div>
 
             <div className="mt-8">
