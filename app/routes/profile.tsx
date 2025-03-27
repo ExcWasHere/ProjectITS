@@ -1,5 +1,6 @@
 import Footer from "~/common/Footer";
 import Header from "~/common/Header";
+import DonorSection from "~/components/Profile/donatur";
 import Index0 from "~/components/Profile/index0";
 import Index1 from "~/components/Profile/index1";
 import Index2 from "~/components/Profile/index2";
@@ -13,6 +14,7 @@ export default function profile() {
         <Index0 />
         <Index1 />
         <Index2 />
+        <DonorSection />
         <IndexReview />
         <LocationCard />
         <Footer />

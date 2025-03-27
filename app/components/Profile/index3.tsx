@@ -33,11 +33,7 @@ const userEaseReviews: UserReview[] = [
   },
 ];
 
-const reviewImages = [
-  "#",
-  "#",
-  "#"
-];
+const reviewImages = ["/programs/autumn.jpeg", "#", "#", "#", "#", "#"];
 
 interface NavigationButtonProps {
   onClick: () => void;
@@ -65,7 +61,6 @@ const NavigationButton = ({
 
 export default function IndexReview() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const currentReview = userEaseReviews[currentIndex];
 
   const handleNext = () => {
@@ -76,115 +71,89 @@ export default function IndexReview() {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
-  const handleImageNext = () => {
-    setCurrentImageIndex((prev) => Math.min(prev + 1, reviewImages.length - 1));
-  };
-
-  const handleImagePrevious = () => {
-    setCurrentImageIndex((prev) => Math.max(prev - 1, 0));
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="max-w-[90vw] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
-                Penerima Manfaat <span className="text-green-600">& Testimoni</span>
-              </h1>
-              <p className="text-lg text-gray-600">
-                Pengalaman nyata dari penerima bantuan dan manfaat yang sudah diberikan oleh YMI ITS.
+        <div className="space-y-8">
+          <div className="relative pt-2 pb-8 flex flex-col md:flex-row h-full max-w-7xl mx-auto justify-center px-6">
+            <h1 className="text-black font-bold text-5xl md:text-7xl max-w-2xl mb-2 md:mb-0 leading-tight text-center">
+              Testimoni &{" "}
+              <span className="text-green-600 relative">Penerima Manfaat</span>
+            </h1>
+          </div>
+
+          {/* Photo Grid */}
+          <div className="grid grid-cols-3 gap-4">
+            {reviewImages.map((image, index) => (
+              <div
+                key={index}
+                className="aspect-square bg-gray-200 rounded-lg overflow-hidden"
+              >
+                <img
+                  src={image}
+                  alt={`Penerima Manfaat ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Testimonial Section */}
+          <div className="bg-white/80 backdrop-blur rounded-2xl shadow-xl p-8">
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-semibold text-gray-900">
+                  {currentReview.jobStatus}
+                </h3>
+              </div>
+
+              <p className="text-lg leading-relaxed text-gray-700">
+                {currentReview.content}
               </p>
-            </div>
 
-            <div className="bg-white/80 backdrop-blur rounded-2xl shadow-xl p-8">
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-semibold text-gray-900">
-                    {currentReview.jobStatus}
-                  </h3>
-                </div>
-
-                <p className="text-lg leading-relaxed text-gray-700">
-                  {currentReview.content}
-                </p>
-
-                <div className="pt-6 border-t border-gray-100">
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          {currentReview.Name}
-                        </h3>
-                        {currentReview.verifiedUser && (
-                          <BadgeCheck className="w-5 h-5 text-green-500" />
-                        )}
-                      </div>
+              <div className="pt-6 border-t border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {currentReview.Name}
+                      </h3>
+                      {currentReview.verifiedUser && (
+                        <BadgeCheck className="w-5 h-5 text-green-500" />
+                      )}
                     </div>
+                  </div>
 
-                    <div className="flex gap-3">
-                      <NavigationButton
-                        onClick={handlePrevious}
-                        disabled={currentIndex === 0}
-                        icon={ChevronLeft}
-                      />
-                      <NavigationButton
-                        onClick={handleNext}
-                        disabled={currentIndex === userEaseReviews.length - 1}
-                        icon={ChevronRight}
-                      />
-                    </div>
+                  <div className="flex gap-3">
+                    <NavigationButton
+                      onClick={handlePrevious}
+                      disabled={currentIndex === 0}
+                      icon={ChevronLeft}
+                    />
+                    <NavigationButton
+                      onClick={handleNext}
+                      disabled={currentIndex === userEaseReviews.length - 1}
+                      icon={ChevronRight}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl bg-white relative">
-              <img
-                src={reviewImages[currentImageIndex]}
-                alt="Penerima Manfaat"
-                className="w-full h-full object-cover"
+          {/* Testimonial Indicator */}
+          <div className="flex justify-center gap-2">
+            {userEaseReviews.map((_, index) => (
+              <div
+                key={index}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "w-8 bg-green-500"
+                    : "w-2 bg-gray-200"
+                }`}
               />
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3">
-                <NavigationButton
-                  onClick={handleImagePrevious}
-                  disabled={currentImageIndex === 0}
-                  icon={ChevronLeft}
-                />
-                <NavigationButton
-                  onClick={handleImageNext}
-                  disabled={currentImageIndex === reviewImages.length - 1}
-                  icon={ChevronRight}
-                />
-              </div>
-            </div>
-            <div className="absolute -z-10 inset-0 bg-gradient-to-r from-green-50 to-yellow-50 blur-3xl opacity-30 rounded-full transform translate-x-8 translate-y-8" />
-
-            <div className="mt-4 flex justify-center gap-2">
-              {reviewImages.map((_, index) => (
-                <div
-                  key={index}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    index === currentImageIndex ? "w-8 bg-green-500" : "w-2 bg-gray-200"
-                  }`}
-                />
-              ))}
-            </div>
+            ))}
           </div>
-        </div>
-
-        <div className="mt-8 flex justify-center gap-2">
-          {userEaseReviews.map((_, index) => (
-            <div
-              key={index}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                index === currentIndex ? "w-8 bg-green-500" : "w-2 bg-gray-200"
-              }`}
-            />
-          ))}
         </div>
       </div>
     </div>
