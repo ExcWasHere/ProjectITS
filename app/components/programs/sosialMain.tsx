@@ -81,27 +81,27 @@ const ProgramSection = ({ program, isReverse }: { program: ProgramDetails, isRev
   return (
     <div 
       ref={sectionRef}
-      className={`flex items-center justify-between py-16 space-x-12 
+      className={`flex flex-col md:flex-row items-center justify-between py-8 md:py-16 md:space-x-12 
         transform transition-all duration-700 ease-out
         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-        ${isReverse ? 'flex-row-reverse' : ''}`}
+        ${isReverse ? 'md:flex-row-reverse' : ''}`}
     >
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2 mb-6 md:mb-0">
         <img 
           src={program.imageSrc} 
           alt={program.title} 
-          className="w-full h-96 object-cover rounded-xl shadow-lg"
+          className="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg"
         />
       </div>
-      <div className="w-1/2 space-y-6">
-        <h2 className="text-3xl font-bold text-green-800 mb-4">{program.title}</h2>
-        <p className="text-gray-700 leading-relaxed text-lg">
+      <div className="w-full md:w-1/2 space-y-4 md:space-y-6 text-center md:text-left">
+        <h2 className="text-2xl md:text-3xl font-bold text-green-800 mb-4">{program.title}</h2>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
           {program.description}
         </p>
         {program.buttonLink && (
           <a 
             href={program.buttonLink} 
-            className="inline-block mt-4 px-8 py-3 bg-green-600 text-white rounded-lg 
+            className="inline-block mt-4 px-6 md:px-8 py-2 md:py-3 bg-green-600 text-white rounded-lg 
             hover:bg-green-700 transition-colors duration-300 text-center"
           >
             Donasi Sekarang
@@ -140,14 +140,14 @@ export default function SosialPrograms(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-green-100 relative">
-      <div className="container mx-auto px-16 py-16">
-        <div className="mb-20 text-center">
-          <h1 className="text-5xl font-bold text-gray-800 mb-6">
+      <div className="container mx-auto px-4 md:px-16 py-8 md:py-16">
+        <div className="mb-12 md:mb-20 text-center">
+          <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4 md:mb-6">
             Program <span className="text-green-600">Sosial Keumatan</span>
           </h1>
           <p 
             ref={descriptionRef}
-            className={`max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed
+            className={`max-w-3xl mx-auto text-base md:text-xl text-gray-600 leading-relaxed
               transition-all duration-1000 ease-out
               ${isDescriptionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
@@ -163,19 +163,19 @@ export default function SosialPrograms(): JSX.Element {
           />
         ))}
 
-        <div className="mt-16 flex justify-center">
+        <div className="mt-8 md:mt-16 flex justify-center">
           <a 
             href="/" 
-            className="group relative inline-flex items-center px-8 py-3 overflow-hidden 
+            className="group relative inline-flex items-center px-6 md:px-8 py-2 md:py-3 overflow-hidden 
             bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 
             transition-all duration-300 ease-in-out transform hover:scale-105
             focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
             <ArrowLeftIcon 
               className="mr-2 transition-transform duration-300 
-              group-hover:-translate-x-1 w-5 h-5"
+              group-hover:-translate-x-1 w-4 md:w-5 h-4 md:h-5"
             />
-            <span className="relative z-10 text-lg font-semibold">
+            <span className="relative z-10 text-base md:text-lg font-semibold">
               Kembali
             </span>
             <span 

@@ -44,7 +44,7 @@ const DonorSection = () => {
 
   return (
     <motion.section 
-      className="bg-white py-12 px-4"
+      className="bg-white py-8 md:py-12 px-4"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -54,7 +54,7 @@ const DonorSection = () => {
           className="bg-slate-300 shadow-lg rounded-lg overflow-hidden"
           variants={containerVariants}
         >
-          <div className="grid grid-cols-3 gap-4 p-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 p-4 md:p-6">
             {[
               "/programs/autumn.jpeg", 
               "/api/placeholder/300/300", 
@@ -66,7 +66,7 @@ const DonorSection = () => {
                 variants={itemVariants}
                 whileHover="hover"
               >
-                <div className="bg-gray-200 h-48 w-full mb-4 overflow-hidden rounded-lg">
+                <div className="bg-gray-200 h-32 md:h-48 w-full mb-2 md:mb-4 overflow-hidden rounded-lg">
                   <motion.img
                     src={src}
                     alt={`Donatur ${index + 1}`}
@@ -82,11 +82,11 @@ const DonorSection = () => {
         </motion.div>
         
         <motion.div 
-          className="bg-slate-300 text-center py-4 mt-4 rounded-lg"
+          className="bg-slate-300 text-center py-3 md:py-4 mt-2 md:mt-4 rounded-lg"
           variants={numberVariants}
         >
           <motion.p 
-            className="text-2xl font-bold text-gray-800"
+            className="text-xl md:text-2xl font-bold text-gray-800"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -94,7 +94,7 @@ const DonorSection = () => {
             4.163 Donatur
           </motion.p>
           <motion.p 
-            className="text-gray-600 mt-2"
+            className="text-sm md:text-base text-gray-600 mt-1 md:mt-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 300, delay: 0.2 }}

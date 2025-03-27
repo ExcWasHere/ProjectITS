@@ -52,9 +52,9 @@ export default function Index2(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white text-black">
-      {/* Header Section with Styling from Index1 */}
-      <div className="relative pt-16 pb-8 flex flex-col md:flex-row h-full max-w-7xl mx-auto justify-between px-6">
-        <h1 className="text-black font-bold text-5xl md:text-7xl max-w-2xl mb-2 md:mb-0 leading-tight text-right ml-auto">
+      {/* Header Section with Improved Mobile Responsiveness */}
+      <div className="relative pt-8 md:pt-16 pb-4 md:pb-8 flex flex-col md:flex-row h-full max-w-7xl mx-auto justify-between px-4 md:px-6">
+        <h1 className="text-black font-bold text-3xl md:text-5xl lg:text-7xl max-w-2xl mb-4 md:mb-0 leading-tight text-center md:text-right ml-auto">
           Struktur{" "}
           <span className="text-green-600 relative">
             Organisasi
@@ -62,8 +62,8 @@ export default function Index2(): JSX.Element {
         </h1>
       </div>
 
-      {/* Single Long Photo with Size from Index0 */}
-      <div className="h-[60vh] relative">
+      {/* Single Long Photo with Improved Mobile Responsiveness */}
+      <div className="h-[40vh] md:h-[60vh] relative">
         <img 
           src="/programs/autumn.jpeg" 
           alt="Struktur Organisasi Yayasan Manarul Ilmi ITS" 
@@ -72,16 +72,16 @@ export default function Index2(): JSX.Element {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
       </div>
 
-      {/* Roles Cards Section */}
-      <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-6 -mt-16">
+      {/* Roles Cards Section with Improved Mobile Layout */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 -mt-8 md:-mt-16">
         {roleData.map((role) => (
           <div 
             key={role.id}
             className={`
               ${role.backgroundColor}
-              rounded-2xl 
-              p-6 
-              shadow-lg 
+              rounded-xl md:rounded-2xl 
+              p-4 md:p-6 
+              shadow-md md:shadow-lg 
               transform 
               transition-all 
               duration-300 
@@ -94,12 +94,12 @@ export default function Index2(): JSX.Element {
             onMouseEnter={() => setHoveredCard(role.id)}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            <h2 className="text-2xl font-bold mb-3 text-gray-800">
+            <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-gray-800">
               {role.title}
             </h2>
-            <div className="space-y-2 max-h-64 overflow-y-auto">
+            <div className="space-y-1 md:space-y-2 max-h-48 md:max-h-64 overflow-y-auto">
               {role.members.map((member, index) => (
-                <p key={index} className="text-gray-600 text-sm">
+                <p key={index} className="text-xs md:text-sm text-gray-600">
                   {member}
                 </p>
               ))}
