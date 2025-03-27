@@ -14,7 +14,6 @@ export default function Border3(): JSX.Element {
     if (isInView) {
       mainControls.start("visible");
       
-      // Animasi angka per digit
       const animateDigits = async () => {
         for (let i = 0; i <= fullNumber.length; i++) {
           await numberControls.start({
@@ -52,7 +51,7 @@ export default function Border3(): JSX.Element {
             <motion.h2 
               initial={{ clipPath: 'inset(0 100% 0 0)' }}
               animate={numberControls}
-              className="text-6xl font-bold mb-4 text-green-800"
+              className="text-4xl md:text-6xl font-bold mb-2 md:mb-4 text-green-800"
             >
               {fullNumber}
             </motion.h2>
@@ -64,7 +63,7 @@ export default function Border3(): JSX.Element {
               initial="hidden"
               animate={mainControls}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="text-2xl text-green-900"
+              className="text-lg md:text-2xl text-green-900"
             >
               PENERIMA MANFAAT
             </motion.p>
@@ -79,16 +78,20 @@ export default function Border3(): JSX.Element {
             whileHover={{ scale: 1.05 }}
             className="relative overflow-hidden rounded-xl shadow-lg"
           >
-            <img 
-              src="#" 
-              alt="Foto Kegiatan" 
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className={`absolute inset-0 bg-black transition-opacity duration-300 
-              ${hoveredSection === 'kegiatan' ? 'opacity-40' : 'opacity-20'}`}
-            ></div>
-            <div className="relative z-10 p-4 text-white">
-              <span className="text-2xl font-semibold"></span>
+            <div 
+              className="absolute inset-0 bg-transparent flex items-center justify-center text-white"
+              style={{ 
+                backgroundImage: 'url(/border/kegiatan.jpg)', 
+                backgroundSize: 'cover', 
+                backgroundPosition: 'center' 
+              }}
+            >
+              <div className={`absolute inset-0 bg-black transition-opacity duration-300 
+                ${hoveredSection === 'kegiatan' ? 'opacity-40' : 'opacity-20'}`}
+              ></div>
+              <div className="relative z-10 p-4 text-center">
+                <span className="text-xl md:text-2xl font-semibold">Foto Kegiatan</span>
+              </div>
             </div>
           </motion.div>
           
@@ -98,16 +101,20 @@ export default function Border3(): JSX.Element {
             whileHover={{ scale: 1.05 }}
             className="relative overflow-hidden rounded-xl shadow-lg"
           >
-            <img 
-              src="#" 
-              alt="Foto Grafik Laporan" 
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className={`absolute inset-0 bg-black transition-opacity duration-300 
-              ${hoveredSection === 'laporan' ? 'opacity-40' : 'opacity-20'}`}
-            ></div>
-            <div className="relative z-10 p-4 text-white">
-              <span className="text-2xl font-semibold"></span>
+            <div 
+              className="absolute inset-0 bg-transparent flex items-center justify-center text-white"
+              style={{ 
+                backgroundImage: 'url(/border/laporan.jpg)', 
+                backgroundSize: 'cover', 
+                backgroundPosition: 'center' 
+              }}
+            >
+              <div className={`absolute inset-0 bg-black transition-opacity duration-300 
+                ${hoveredSection === 'laporan' ? 'opacity-40' : 'opacity-20'}`}
+              ></div>
+              <div className="relative z-10 p-4 text-center">
+                <span className="text-xl md:text-2xl font-semibold">Foto Grafik Laporan</span>
+              </div>
             </div>
           </motion.div>
         </div>

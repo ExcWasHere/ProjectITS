@@ -60,7 +60,7 @@ interface IndicatorProps {
 
 const Indicator = ({ isActive, onClick }: IndicatorProps): JSX.Element => (
   <button
-    className={`w-3 h-3 rounded-full mx-1 transition-all duration-300 ${
+    className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full mx-0.5 md:mx-1 transition-all duration-300 ${
       isActive ? "bg-green-500 scale-125" : "bg-gray-300"
     }`}
     onClick={onClick}
@@ -110,13 +110,14 @@ export default function Border1() {
       <div className="absolute inset-0 bg-white">
         <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-white">
           {/* Pattern overlay */}
-          <div className="absolute inset-0 opacity-10" 
-               style={{ 
-                 backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E')",
-                 backgroundSize: "60px 60px" 
-               }}
+          <div 
+            className="absolute inset-0 opacity-10" 
+            style={{ 
+              backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E')",
+              backgroundSize: "60px 60px" 
+            }}
           />
-          <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-green-100 to-transparent" />
+          <div className="absolute bottom-0 w-full h-16 md:h-32 bg-gradient-to-t from-green-100 to-transparent" />
         </div>
 
         {/* Conditionally render images if they exist */}
@@ -158,29 +159,29 @@ export default function Border1() {
         >
           <div className="text-center px-4 md:px-8 max-w-4xl mx-auto">
             <div>
-              <h3 className="inline-block font-semibold mb-4 bg-green-500 text-white px-5 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+              <h3 className="inline-block font-semibold mb-3 md:mb-4 bg-green-500 text-white px-3 py-1 md:px-5 md:py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-sm md:text-base">
                 {heroContent[currentPostIndex].category}
               </h3>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight text-gray-800">
+            <h1 className="text-3xl md:text-6xl font-bold mb-3 md:mb-4 leading-tight text-gray-800">
               {heroContent[currentPostIndex].title}
             </h1>
 
-            <h2 className="text-gray-600 text-xl md:text-2xl mb-8">
+            <h2 className="text-base md:text-2xl mb-6 md:mb-8 text-gray-600 px-2">
               {heroContent[currentPostIndex].subtitle}
             </h2>
 
             {/* Navigation Buttons */}
-            <div className="flex justify-center items-center gap-4 mt-6">
+            <div className="flex justify-center items-center gap-2 md:gap-4 mt-4 md:mt-6">
               <button 
                 onClick={prevSlide} 
-                className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition-all"
+                className="bg-green-500 hover:bg-green-600 text-white p-1.5 md:p-2 rounded-full transition-all"
               >
                 &#10094; {/* Left arrow */}
               </button>
 
-              <div className="flex gap-2">
+              <div className="flex gap-1 md:gap-2">
                 {heroContent.map((_, index) => (
                   <Indicator
                     key={index}
@@ -192,18 +193,18 @@ export default function Border1() {
 
               <button 
                 onClick={nextSlide} 
-                className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition-all"
+                className="bg-green-500 hover:bg-green-600 text-white p-1.5 md:p-2 rounded-full transition-all"
               >
                 &#10095; {/* Right arrow */}
               </button>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-6 md:mt-8">
               <a 
                 href="https://www.itsedekah.id/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 md:py-3 md:px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm md:text-base"
               >
                 Kepoin Yuk!
               </a>
