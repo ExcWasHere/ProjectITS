@@ -1,5 +1,5 @@
 import { useLocation } from "@remix-run/react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface HeaderProps {}
@@ -8,24 +8,27 @@ const Header: React.FC<HeaderProps> = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [activeItem, setActiveItem] = useState<string>("Home");
+  const [isProgramsDropdownOpen, setIsProgramsDropdownOpen] = useState<boolean>(false);
   const currentPage = useLocation();
 
+  const programSubItems = [
+    { name: "Keagamaan", path: "/keagamaan" },
+    { name: "Sosial Keumatan", path: "/sosial-keumatan" },
+    { name: "Pendidikan", path: "/pendidikan" },
+    { name: "Kemanusiaan", path: "/kemanusiaan" },
+    { name: "Wakaf", path: "/wakaf" }
+  ];
+
   useEffect(() => {
-    setIsScrolled(false);
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       if (scrollPosition > 50) {
         setIsScrolled(true);
-        return;
-      }
-      if (scrollPosition === 0) {
+      } else if (scrollPosition === 0) {
         setIsScrolled(false);
       }
-      const timeoutId = setTimeout(() => {
-        setIsScrolled(true);
-      }, 60000);
-      return () => clearTimeout(timeoutId);
     };
+
     window.addEventListener("scroll", handleScroll);
 
     const path = currentPage.pathname;
@@ -48,25 +51,140 @@ const Header: React.FC<HeaderProps> = () => {
   const NavLinks = () => (
     <>
       {navItems.map((item) => (
-        <li key={item}>
-          <a
-            href={`${
-              item === "Home"
-                ? "/"
-                : `/${item.toLowerCase().replace(/\s+/g, "-")}`
-            }`}
-            className={`relative overflow-hidden group py-2 px-3 rounded-lg transition-all duration-300 
-              ${activeItem === item 
-                ? "text-green-500 font-bold" 
-                : "hover:text-green-500"}`}
-            onClick={() => {
-              setActiveItem(item);
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            <span className="relative z-10">{item}</span>
-            <span className="absolute bottom-0 left-0 w-0 h-1 bg-green-400 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-          </a>
+        <li 
+          key={item} 
+          className={`relative group ${item === "Programs" ? "has-dropdown" : ""}`}
+          onMouseEnter={() => item === "Programs" && setIsProgramsDropdownOpen(true)}
+          onMouseLeave={() => item === "Programs" && setIsProgramsDropdownOpen(false)}
+        >
+          {item === "Programs" ? (
+            <div 
+              className={`relative py-2 px-3 rounded-lg transition-all duration-300 flex items-center
+                ${activeItem === item 
+                  ? "text-green-500 font-bold" 
+                  : "hover:text-green-500"}`}
+            >
+              <span className="mr-2">{item}</span>
+              <ChevronDown 
+                className={`w-4 h-4 transition-transform ${
+                  isProgramsDropdownOpen ? 'rotate-180' : 'rotate-0'
+                }`} 
+              />
+              
+              {/* Dropdown Menu */}
+              {isProgramsDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg min-w-[200px] z-50">
+                  {programSubItems.map((subItem) => (
+                    <a
+                      key={subItem.name}
+                      href={subItem.path}
+                      className="block px-4 py-2 hover:bg-green-100 hover:text-green-500 transition-colors"
+                      onClick={() => {
+                        setActiveItem("Programs");
+                        setIsProgramsDropdownOpen(false);
+                      }}
+                    >
+                      {subItem.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <a
+              href={`${
+                item === "Home"
+                  ? "/"
+                  : `/${item.toLowerCase().replace(/\s+/g, "-")}`
+              }`}
+              className={`py-2 px-3 rounded-lg transition-all duration-300 block 
+                ${activeItem === item 
+                  ? "text-green-500 font-bold" 
+                  : "hover:text-green-500"}`}
+              onClick={() => {
+                setActiveItem(item);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              {item}
+            </a>
+          )}
+        </li>
+      ))}
+    </>
+  );
+
+  const MobileNavLinks = () => (
+    <>
+      {navItems.map((item) => (
+        <li key={item} className="px-4">
+          {item === "Programs" ? (
+            <button 
+              className={`block w-full text-left py-3 px-4 rounded-lg transition-all duration-200 ${
+                activeItem === item
+                  ? "bg-green-500 text-white"
+                  : "hover:bg-green-100 hover:text-green-500"
+              }`}
+              onClick={() => setIsProgramsDropdownOpen(!isProgramsDropdownOpen)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setIsProgramsDropdownOpen(!isProgramsDropdownOpen);
+                }
+              }}
+              aria-expanded={isProgramsDropdownOpen}
+              aria-haspopup="true"
+            >
+              <div className="flex justify-between items-center">
+                <span>{item}</span>
+                <ChevronDown 
+                  className="w-4 h-4 transition-transform" 
+                  style={{ 
+                    transform: isProgramsDropdownOpen 
+                      ? 'rotate(180deg)' 
+                      : 'rotate(0deg)' 
+                  }} 
+                />
+              </div>
+              
+              {/* Mobile Dropdown */}
+              {isProgramsDropdownOpen && (
+                <div className="mt-2 space-y-2">
+                  {programSubItems.map((subItem) => (
+                    <a
+                      key={subItem.name}
+                      href={subItem.path}
+                      className="block mt-2 py-2 bg-green-50 rounded-lg text-green-700 hover:bg-green-100 transition-colors"
+                      onClick={() => {
+                        setActiveItem("Programs");
+                        setIsMobileMenuOpen(false);
+                      }}
+                    >
+                      {subItem.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </button>
+          ) : (
+            <a
+              href={`${
+                item === "Home"
+                  ? "/"
+                  : `/${item.toLowerCase().replace(/\s+/g, "-")}`
+              }`}
+              className={`block py-3 px-4 rounded-lg transition-all duration-200 ${
+                activeItem === item
+                  ? "bg-green-500 text-white"
+                  : "hover:bg-green-100 hover:text-green-500"
+              }`}
+              onClick={() => {
+                setActiveItem(item);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              {item}
+            </a>
+          )}
         </li>
       ))}
     </>
@@ -89,7 +207,7 @@ const Header: React.FC<HeaderProps> = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
-          <ul className="flex gap-4 font-semibold">
+          <ul className="flex gap-4 font-semibold items-center">
             <NavLinks />
           </ul>
         </nav>
@@ -135,28 +253,7 @@ const Header: React.FC<HeaderProps> = () => {
         </div>
         <nav className="py-6 text-gray-800">
           <ul className="flex flex-col gap-2 font-semibold">
-            {navItems.map((item) => (
-              <li key={item} className="px-4">
-                <a
-                  href={`${
-                    item === "Home"
-                      ? "/"
-                      : `/${item.toLowerCase().replace(/\s+/g, "-")}`
-                  }`}
-                  className={`block py-3 px-4 rounded-lg transition-all duration-200 ${
-                    activeItem === item
-                      ? "bg-green-500 text-white"
-                      : "hover:bg-green-100 hover:text-green-500"
-                  }`}
-                  onClick={() => {
-                    setActiveItem(item);
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  {item}
-                </a>
-              </li>
-            ))}
+            <MobileNavLinks />
           </ul>
         </nav>
       </div>

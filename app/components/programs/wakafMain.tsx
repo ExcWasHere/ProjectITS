@@ -1,43 +1,44 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
 
-interface BentukKegiatan {
+interface WakafProgramDetails {
   id: number;
   title: string;
-  subtitle: string;
+  description: string;
+  imageSrc: string;
   buttonLink?: string;
 }
 
-const featureList: BentukKegiatan[] = [
+const wakafProgramList: WakafProgramDetails[] = [
   {
     id: 1,
     title: "Wakaf Produktif",
-    subtitle:
-      "Wakaf produktif adalah skema pengelolaan donasi wakaf dari umat, yaitu dengan memproduktifkan dana tersebut sehingga mampu memberikan bagi hasil yang berkelanjutan, dimana bagi hasil tersebut dipergunakan untuk bantuan biaya pendidikan mahasiswa ITS.",
+    description: 
+      "Wakaf produktif adalah skema pengelolaan donasi wakaf dari umat, yaitu dengan memproduktifkan dana tersebut sehingga mampu memberikan bagi hasil yang berkelanjutan. Bagi hasil tersebut dipergunakan untuk bantuan biaya pendidikan mahasiswa ITS, menciptakan siklus pemberdayaan yang berkelanjutan.",
+    imageSrc: "/api/placeholder/400/300",
+    buttonLink: "https://www.itsedekah.id/"
   },
   {
     id: 2,
     title: "Wakaf Air Bersih",
-    subtitle:
-      "Solusi dalam penyelesaian krisis air bersih di Indonesia bisa dengan dilakukan pembangunan sumur bor maupun pipanisasi. Kalimantan Timur (1) Sulawesi Utara (1) NTT (3) NTB (1) Jawa Timur (13) DIY (2) Jateng (1)",
+    description: 
+      "Program wakaf air bersih bertujuan menyelesaikan krisis air bersih di Indonesia melalui pembangunan sumur bor dan pipanisasi. Hingga saat ini, kami telah melaksanakan proyek di berbagai wilayah, termasuk Kalimantan Timur, Sulawesi Utara, NTT, NTB, Jawa Timur, DIY, dan Jawa Tengah.",
+    imageSrc: "/api/placeholder/400/300",
+    buttonLink: "https://www.itsedekah.id/"
   },
   {
     id: 3,
     title: "Wakaf Desain",
-    subtitle:
-      "Wakaf desain merupakan kerjasama YMI ITS dengan Alumni Arsitektur ITS dalam bentuk wakaf desain untuk bangunan sosial dan keagamaan, diantaranya desain Masjid, Pondok Pesantren Rumah Tahfidz, Rumah Sakit, dll.",
-  },
-  {
-    id: 4,
-    title: "Ingin menyalurkan donasi lewat program kami?",
-    subtitle: "Donasi Sekarang!",
-    buttonLink: "https://www.itsedekah.id/",
-  },
+    description: 
+      "Wakaf desain merupakan kolaborasi YMI ITS dengan Alumni Arsitektur ITS untuk menyediakan desain bangunan sosial dan keagamaan. Kami fokus pada perancangan fasilitas penting seperti Masjid, Pondok Pesantren, Rumah Tahfidz, dan Rumah Sakit, yang bertujuan memberikan solusi arsitektur berkelanjutan.",
+    imageSrc: "/api/placeholder/400/300",
+    buttonLink: "https://www.itsedekah.id/"
+  }
 ];
 
-const KegiatanCard = ({ feature }: { feature: BentukKegiatan }) => {
+const WakafProgramSection = ({ program, isReverse }: { program: WakafProgramDetails, isReverse?: boolean }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,38 +51,41 @@ const KegiatanCard = ({ feature }: { feature: BentukKegiatan }) => {
       { threshold: 0.1 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
       }
     };
   }, []);
 
   return (
     <div 
-      ref={cardRef}
-      className={`relative transform transition-all duration-700 ease-out 
+      ref={sectionRef}
+      className={`flex items-center justify-between py-16 space-x-12 
+        transform transition-all duration-700 ease-out
         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-        bg-white rounded-xl p-8 hover:scale-105 hover:-translate-y-2 hover:shadow-lg`}
+        ${isReverse ? 'flex-row-reverse' : ''}`}
     >
-      <div className="absolute inset-5 bg-green-100 rounded-xl transform rotate-[1deg]"></div>
-      <div className="relative bg-white rounded-xl p-6 shadow-lg">
-        <h3 className="text-xl font-bold text-gray-800 tracking-tight mb-4">
-          {feature.title}
-        </h3>
-
-        <p className="text-gray-600 leading-relaxed mb-4">
-          {feature.subtitle}
+      <div className="w-1/2">
+        <img 
+          src={program.imageSrc} 
+          alt={program.title} 
+          className="w-full h-96 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+      <div className="w-1/2 space-y-6">
+        <h2 className="text-3xl font-bold text-green-800 mb-4">{program.title}</h2>
+        <p className="text-gray-700 leading-relaxed text-lg">
+          {program.description}
         </p>
-
-        {feature.buttonLink && (
+        {program.buttonLink && (
           <a 
-            href={feature.buttonLink} 
-            className="inline-block mt-4 px-6 py-2 bg-green-600 text-white rounded-lg 
+            href={program.buttonLink} 
+            className="inline-block mt-4 px-8 py-3 bg-green-600 text-white rounded-lg 
             hover:bg-green-700 transition-colors duration-300 text-center"
           >
             Donasi Sekarang
@@ -92,52 +96,7 @@ const KegiatanCard = ({ feature }: { feature: BentukKegiatan }) => {
   );
 };
 
-const PhotoCard = ({ src, title }: { src: string; title: string }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, []);
-
-  return (
-    <div 
-      ref={cardRef}
-      className={`relative transform transition-all duration-700 ease-out 
-        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-        bg-white rounded-xl overflow-hidden shadow-lg hover:scale-105 hover:-translate-y-2`}
-    >
-      <img 
-        src={src} 
-        alt={title} 
-        className="w-full h-64 object-cover"
-      />
-      <div className="p-4 bg-white">
-        <h4 className="text-lg font-semibold text-gray-800">{title}</h4>
-      </div>
-    </div>
-  );
-};
-
-export default function IndexWakaf(): JSX.Element {
+export default function WakafPrograms(): JSX.Element {
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const descriptionRef = useRef(null);
 
@@ -165,52 +124,32 @@ export default function IndexWakaf(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-green-100 relative">
-      <div className="container mx-auto px-4 py-16 w-[90vw]">
-        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-20">
+      <div className="container mx-auto px-16 py-16">
+        <div className="mb-20 text-center">
+          <h1 className="text-5xl font-bold text-gray-800 mb-6">
+            Program <span className="text-green-600">Wakaf</span>
+          </h1>
           <p 
             ref={descriptionRef}
-            className={`max-w-2xl text-xl md:text-2xl text-gray-600 leading-relaxed 
-              font-light italic transition-all duration-1000 ease-out
+            className={`max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed 
+              transition-all duration-1000 ease-out
               ${isDescriptionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            Membantu mengabadikan amal umat dengan memberikan harapan kepada yang membutuhkan.
+            Membantu mengabadikan amal umat dengan memberikan harapan kepada yang membutuhkan, melalui berbagai inisiatif wakaf produktif dan berkelanjutan.
           </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight max-w-xl tracking-tight">
-            Program <br />
-            <span className="text-green-600">Wakaf</span>
-          </h1>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {featureList.map((feature) => (
-            <KegiatanCard key={feature.id} feature={feature} />
-          ))}
-        </div>
+        {wakafProgramList.map((program, index) => (
+          <WakafProgramSection 
+            key={program.id} 
+            program={program} 
+            isReverse={index % 2 !== 0} 
+          />
+        ))}
 
-        <div className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            Dokumentasi Kegiatan
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <PhotoCard 
-              src="#" 
-              title="Wakaf Air Bersih" 
-            />
-            <PhotoCard 
-              src="#" 
-              title="Wakaf Desain" 
-            />
-            <PhotoCard 
-              src="#" 
-              title="Wakaf Produktif" 
-            />
-          </div>
-        </div>
-
-        {/* Back Button */}
         <div className="mt-16 flex justify-center">
           <a 
-            href="/programs" 
+            href="/" 
             className="group relative inline-flex items-center px-8 py-3 overflow-hidden 
             bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 
             transition-all duration-300 ease-in-out transform hover:scale-105
